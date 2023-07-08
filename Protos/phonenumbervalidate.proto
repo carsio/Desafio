@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+service PhoneNumberValidation {
+  rpc Validate(ValidationRequest) returns (ValidationResult) {}
+}
+
+message ValidationRequest {
+  string verification_code = 1;
+  string token = 2;
+}
+
+message ValidationResult {
+  bool valid = 1;
+  string error = 2;
+}
