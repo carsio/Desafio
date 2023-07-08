@@ -36,13 +36,13 @@ Para mais informações sobre a API acesse [Documentação da API de Autenticaç
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/carsio/desafiob.git
+git clone git@github.com:carsio/Desafio.git
 ```
 
 2. Navegue até o diretório do projeto:
 
 ```bash
-cd desafiob
+cd Desafio
 ```
 
 3. Atualize as strings de conexão e as configurações JWT e Twilio nos arquivos appsettings.json dos projetos Core e Notification.
