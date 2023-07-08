@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 namespace Tests.Integration;
 
 public class ExceptionFilterTest : IntegrationTests {
-    public ExceptionFilterTest(WebApplicationFactory<Program> factory) : base(factory) { }
+    public ExceptionFilterTest(CustomWebApplicationFactory<Program> factory) : base(factory) { }
 
     [Fact]
     public async Task Error_ReturnsInternalServerErrorStatusCode() {

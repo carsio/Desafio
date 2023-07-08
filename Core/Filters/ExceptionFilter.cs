@@ -24,7 +24,7 @@ public class ExceptionFilter : IExceptionFilter
             return;
         }
 
-        // response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        // context.Result =  new JsonResult(new { error = "Server Error" });
+        response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        context.Result =  new JsonResult(new { error = "Server Error" });
     }
 }

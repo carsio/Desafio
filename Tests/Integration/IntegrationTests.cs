@@ -1,14 +1,28 @@
-
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Tests.Integration;
 
-public abstract class IntegrationTests : IClassFixture<WebApplicationFactory<Program>>
+public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.ConfigureAppConfiguration((hostingContext, config) =>
+        {
+            config.Sources.Clear();
+            config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        });
+    }
+}
+
+
+public abstract class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Program>>
+{
+    private readonly CustomWebApplicationFactory<Program> _factory;
     protected readonly HttpClient _client;
 
-    public IntegrationTests(WebApplicationFactory<Program> factory)
+    public IntegrationTests(CustomWebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _client = _factory.CreateClient();

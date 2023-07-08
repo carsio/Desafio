@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc.Testing;
 namespace Tests.Integration;
 
 public class UserTest : IntegrationTests {
-    public UserTest(WebApplicationFactory<Program> factory) : base(factory) { }
+    public UserTest(CustomWebApplicationFactory<Program> factory) : base(factory) { }
 
     [Fact]
     public async Task Register_ReturnsSuccessStatusCode() {
         var uniqueUser = Guid.NewGuid().ToString();
         // Arrange
-        var userDto = new UserDto {
+        var userDto = new CreateUserDto {
             Email = $"{uniqueUser}@test.com",
             Password = "fake_password"
         };
@@ -28,7 +28,7 @@ public class UserTest : IntegrationTests {
     [Fact]
     public async Task Register_ReturnsBadRequestStatusCode() {
         // Arrange
-        var userDto = new UserDto {
+        var userDto = new CreateUserDto {
             Email = "test@test.com",
             Password = "fake_password"
         };
